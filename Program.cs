@@ -8,11 +8,19 @@ namespace listEmployees
         public string Name {get;}
         public DateTime CreatedOn {get;}
         public List<Employee> CurrentEmployees { get; set; }
-
         public Company(string name, DateTime createdOn) {
             Name = name;
             CreatedOn = createdOn;
+            CurrentEmployees = new List<Employee>();
         }
+        public void ListEmployees () {
+            foreach(Employee worker in CurrentEmployees) {
+                Console.WriteLine($"{worker.FirstName} {worker.LastName} started on {worker.StartDate} and is the {worker.Title} at {Name}");
+            }
+        }
+
+
+
     }
     public class Employee
     {
@@ -26,7 +34,7 @@ namespace listEmployees
     {
         static void Main(string[] args)
         {
-            Company FroMo = new Company("FroMo", DateTime.Now);
+            Company FroMo = new Company("FroMo", new DateTime (20190101));
 
             Employee jimbo = new Employee()
             {
@@ -41,7 +49,7 @@ namespace listEmployees
                 FirstName = "Julia",
                 LastName = "Gulia",
                 Title = "Boss Person",
-                StartDate = DateTime.Now
+                StartDate = new DateTime(2008, 3, 1, 7, 0, 0)
 
             };
             Employee hernando = new Employee()
@@ -49,16 +57,15 @@ namespace listEmployees
                 FirstName = "Hernando",
                 LastName = "ElBrando",
                 Title = "Hitman",
-                StartDate = DateTime.Now
+                StartDate = new DateTime(2017, 6, 11, 9, 0, 0)
 
             };
 
-            FroMo.CurrentEmployees.Add(hernando);
-            FroMo.CurrentEmployees.Add(julia);
             FroMo.CurrentEmployees.Add(jimbo);
+            FroMo.CurrentEmployees.Add(julia);
+            FroMo.CurrentEmployees.Add(hernando);
 
-
-
+            FroMo.ListEmployees();
 
         }
     }
